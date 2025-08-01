@@ -5,10 +5,9 @@ public class Calcu {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        boolean cont = true;
-        int choice=0;
+        int choice;
 
-        while (cont && choice<=4) {
+        while (true) {
             System.out.println("--- Calculator Menu ---");
             System.out.println("1. Add");
             System.out.println("2. Subtract");
@@ -18,47 +17,46 @@ public class Calcu {
             System.out.print("Choose an option: ");
 
             choice = input.nextInt();
+            double num1,num2,result;
 
-
-                System.out.print("Enter first number: ");
-                double num1 = input.nextDouble();
-
-                System.out.print("Enter second number: ");
-                double num2 = input.nextDouble();
-
-                double result;
-
-            switch (choice) {
-                case 1:
-
-                    result = num1 + num2;
-                    System.out.println("Result: " + result);
+                if(choice == 5){
+                    System.out.println("Calculator Closed. GOOD BYE!");
                     break;
-                case 2:
-                    result = num1 - num2;
-                    System.out.println("Result: " + result);
-                    break;
-                case 3:
-                    result = num1 * num2;
-                    System.out.println("Result: " + result);
-                    break;
-                case 4:
-                    if (num2 != 0) {
-                        result = num1 / num2;
-                        System.out.println("Result: " + result);
-                    } else {
-                        System.out.println("Error: Division by zero is not allowed.");
-                    }
-                    break;
-                case 5:
-                    cont = false;
-                    System.out.println("Calculator closed.");
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please select a valid option.");
+                }
+            if (choice < 1 || choice > 5) {
+                System.out.println("Invalid choice. Please select a valid option.");
+                continue;
             }
-            System.out.println("Closed"); // Add a blank line for better readability
+                System.out.print("Enter first number: ");
+                num1=input.nextDouble();
+                System.out.print("Enter second number: ");
+                num2 = input.nextDouble();
+
+                switch (choice) {
+                    case 1:
+                        result = num1 + num2;
+                        System.out.println("Result: " + result);
+                        break;
+                    case 2:
+                        result = num1 - num2;
+                        System.out.println("Result: " + result);
+                        break;
+                    case 3:
+                        result = num1 * num2;
+                        System.out.println("Result: " + result);
+                        break;
+                    case 4:
+                        if (num2 != 0) {
+                            result = num1 / num2;
+                            System.out.println("Result: " + result);
+                        } else {
+                            System.out.println("Error: Division by zero is not allowed.");
+                        }
+                        break;
+            }
+            //close scanner to free system resources
+            Scanner.close();
         }
-        input.close();
+
     }
 }
