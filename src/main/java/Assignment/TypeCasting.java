@@ -7,26 +7,21 @@ public class TypeCasting {
 
         //a. cast a to double and add to b
         double sum = a + b ;//implicit
-        System.out.println("sum(a+b) : "+sum);
 
         //b. a/b
         double div = a/b;
-        System.out.println("division(a/b) : "+div);
 
-        //c.
-        int c = (int)b;//expplicit
+        //c. cast b as int
+        int c = (int)b;//explicit
         boolean d = a > c;
-        System.out.println("Is a > int(b) : "+d);
 
         //d. if a is divisible by 3 and b > 2.5
-
         boolean result = a%3 == 0 && b>2.5;
+
+        //e. Print all the results
+        System.out.println("sum(a+b) : "+sum);
+        System.out.println("division(a/b) : "+div);
+        System.out.println("Is a > int(b) : "+d);
         System.out.println("If a is divisible by 3 and b > 2.5 : "+result);
-
-
-
-
-
-
     }
 }
