@@ -17,46 +17,43 @@ public class Calcu {
             System.out.print("Choose an option: ");
 
             choice = input.nextInt();
-            double num1,num2,result;
+            double num1, num2, result;
 
-                if(choice == 5){
-                    System.out.println("Calculator Closed. GOOD BYE!");
-                    break;
-                }
+            if (choice == 5) {
+                System.out.println("Calculator Closed. GOOD BYE!");
+                break;
+            }
             if (choice < 1 || choice > 5) {
                 System.out.println("Invalid choice. Please select a valid option.");
                 continue;
             }
-                System.out.print("Enter first number: ");
-                num1=input.nextDouble();
-                System.out.print("Enter second number: ");
-                num2 = input.nextDouble();
+            System.out.print("Enter first number: ");
+            num1 = input.nextDouble();
+            System.out.print("Enter second number: ");
+            num2 = input.nextDouble();
 
-                switch (choice) {
-                    case 1:
-                        result = num1 + num2;
+            switch (choice) {
+                case 1:
+                    result = num1 + num2;
+                    System.out.println("Result: " + result);
+                    break;
+                case 2:
+                    result = num1 - num2;
+                    System.out.println("Result: " + result);
+                    break;
+                case 3:
+                    result = num1 * num2;
+                    System.out.println("Result: " + result);
+                    break;
+                case 4:
+                    if (num2 != 0) {
+                        result = num1 / num2;
                         System.out.println("Result: " + result);
-                        break;
-                    case 2:
-                        result = num1 - num2;
-                        System.out.println("Result: " + result);
-                        break;
-                    case 3:
-                        result = num1 * num2;
-                        System.out.println("Result: " + result);
-                        break;
-                    case 4:
-                        if (num2 != 0) {
-                            result = num1 / num2;
-                            System.out.println("Result: " + result);
-                        } else {
-                            System.out.println("Error: Division by zero is not allowed.");
-                        }
-                        break;
+                    } else {
+                        System.out.println("Error: Division by zero is not allowed.");
+                    }
+                    break;
             }
-            //close scanner to free system resources
-            Scanner.close();
         }
-
     }
 }
