@@ -20,9 +20,9 @@ public class ArrayVsArrayList {
         // Using ArrayList
         System.out.println("\n=== ArrayList Example ===");
         ArrayList<String> names = new ArrayList<>();
-        names.add("Alice"); // Add elements
-        names.add("Bob");
-        names.add(0, "Charlie"); // Add at index 0
+        names.add("Madan"); // Add elements
+        names.add("Surendar");
+        names.add(0, "Ashish"); // Add at index 0
 
         // Iterate over ArrayList
         for (String name : names) {

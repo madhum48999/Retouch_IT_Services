@@ -7,11 +7,11 @@ public class NumAverage {
         Scanner input = new Scanner(System.in);
 
         System.out.println("Enter the 3 Number to Find the average: ");
-        int a = input.nextInt();
-        int b = input.nextInt();
-        int c = input.nextInt();
+        double a = input.nextDouble();
+        double b = input.nextDouble();
+        double c = input.nextDouble();
 
-        int average = (a+b+c)/3;
+        double average = (a+b+c)/3;
 
         System.out.println("Average of 3 numbers is: "+average);
     }

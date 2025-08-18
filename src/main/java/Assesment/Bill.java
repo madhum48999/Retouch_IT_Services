@@ -17,7 +17,7 @@ public class Bill {
 
         float gst = totalcost*0.18f;
 
-        float aftergst = totalcost+gst;
+        float billaftergst = totalcost+gst;
 
         System.out.println("\n----- Bill -----");
         System.out.println("Cost of Pencil: Rs."+pencil);
@@ -25,6 +25,6 @@ public class Bill {
         System.out.println("Cost of Eraser: Rs."+eraser);
         System.out.println("Total Cost (without GST): Rs."+totalcost);
         System.out.println("GST (18%): Rs."+gst);
-        System.out.println("Final Bill (with GST): Rs."+aftergst);
+        System.out.println("Final Bill (with GST): Rs."+billaftergst);
     }
 }

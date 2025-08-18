@@ -5,14 +5,12 @@ abstract class Shape {
 }
 
 class Circle extends Shape {
-        @Override
         void draw() {
             System.out.println("Drawing a Circle");
         }
         }
 
 class Square extends Shape {
-        @Override
         void draw() {
             System.out.println("Drawing a Square");
         }
@@ -20,10 +18,10 @@ class Square extends Shape {
 
 class  example {
     public static void main(String[] args) {
-                    Shape shape1 = new Circle();
+        Shape shape1 = new Circle();
         Shape shape2 = new Square();
 
-        shape1.draw(); // Calls Circle's draw method
-        shape2.draw(); // Calls Square's draw method
+        shape1.draw();
+        shape2.draw();
     }
 }
