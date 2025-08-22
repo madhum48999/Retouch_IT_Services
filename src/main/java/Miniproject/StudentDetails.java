@@ -1,11 +1,10 @@
 package Miniproject;
 
-import java.util.Scanner;
-
 public class StudentDetails implements DatabaseOperations {
-    Scanner scanner = new Scanner(System.in);
-
-    private Student[] students;
+    /*students variable, which is a reference to an array,
+     cannot be re-assigned to point to a different array after initialization.
+      While the reference is fixed*/
+    private final Student[] students;
     private int count;
 
     public StudentDetails(int size) {
@@ -26,16 +25,17 @@ public class StudentDetails implements DatabaseOperations {
         if (count == 0) {
             System.out.println("No student records found.");
             return;
-        } else {
+        }
+        else {
             System.out.println("\n--- Student Records ---");
             for (int i = 0; i < count; i++) {
-                System.out.println("ID: " + students[i].getId());
-                System.out.println("Name: " + students[i].getName());
-                System.out.println("Course: " + students[i].getCourse());
-                System.out.println("Marks: " + students[i].getMarks());
-                System.out.println("Result: " + (students[i].getMarks() >= 40 ? "Pass" : "Fail"));
-                System.out.println("-----------------------");
-            }
+            System.out.println("ID: " + students[i].getId());
+            System.out.println("Name: " + students[i].getName());
+            System.out.println("Course: " + students[i].getCourse());
+            System.out.println("Marks: " + students[i].getMarks());
+            System.out.println("Result: " + (students[i].getMarks() >= 40 ? "Pass" : "Fail"));
+            System.out.println("-----------------------");
+        }
         }
     }
 
@@ -47,36 +47,37 @@ public class StudentDetails implements DatabaseOperations {
                 students[i].setMarks(marks);
                 System.out.println("Student updated successfully.");
                 return;
-            } else {
+            }
+            else {
                 System.out.println("student not found!!");
             }
         }
     }
 
-    public void delete_student(int[] id) {
-        if (count == 0) {
-            System.out.println("No student records found.");
-            return;
-        }
-
-
-        for (int ids : id) {
-            boolean deleted = false;
-            for (int i = 0; i < count; i++) {
-                if (students[i].getId() == ids) {
-                    // Shift array elements left
-                    System.out.println("\n--- Student IDs ---");
-                        System.out.println("ID: " + students[i].getId());
-                    for (int j = i; j < count - 1; j++) {
-                        students[j] = students[j + 1];
-                    }
-                    students[count - 1] = null;
-                    count--;
-                    deleted = true;
-                    System.out.println("Deleted student with ID: " + ids);
-                    break;
+    public void delete_student(int id) {
+        for (int i = 0; i < count; i++) {
+            if (students[i].getId() == id) {
+                // Shift remaining students left
+                for (int j = i; j < count - 1; j++) {
+                    students[j] = students[j + 1];
                 }
+                students[count - 1] = null;
+                count--;
+                System.out.println("Student deleted successfully.");
+                return;
             }
         }
+        System.out.println("Student not found.");
     }
+
+//used to get the assigned teacher to student
+    public Student findById(int id) {
+        for (int i = 0; i < count; i++) {
+            if (students[i].getId() == id) {
+                return students[i];}
+        }
+            return null;
+    }
+
 }
+
