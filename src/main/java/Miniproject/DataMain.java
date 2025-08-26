@@ -5,8 +5,7 @@ import java.util.Scanner;
 public class DataMain {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-//        StudentDetails db = new StudentDetails(100);
-        StudentDetails db = new StudentDetails();
+        StudentDetails db = new StudentDetails(100);
         TeacherDetails teacherDB = new TeacherDetails(50);
 
         while (true) {

@@ -46,11 +46,5 @@ public class Student extends Person  {
         } else {
             System.out.println("Assigned Teacher: None");
         }
-
-    }
-    public String toString() {
-    return
-            ", Course: " + course +
-                ", Marks: " + marks;
     }
 }
