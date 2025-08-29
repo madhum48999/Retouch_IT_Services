@@ -9,13 +9,12 @@ public class ArrayListExam {
 
         // Add 10 numbers to the ArrayList
         for (int i = 1; i <= 10; i++) {
-//            numbers.add(i);
-            System.out.println(i);
+            numbers.add(i);
         }
 
         // Print the numbers using a for-each loop
         for (int number : numbers) {
-            System.out.println(number);
+            System.out.print(number+" , ");
         }
     }
 }

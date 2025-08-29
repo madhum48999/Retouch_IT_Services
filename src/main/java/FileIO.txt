@@ -1,0 +1,13 @@
+What Is File Handling in Java?
+File handling in Java refers to reading from and writing to files stored on your computer.
+It allows programs to store data persistently, retrieve it later, and manipulate it as needed.
+Java provides powerful classes in the java.io and java.nio.file packages to perform these operations.
+
+
+Common File Operations
+----Operation------------	Java Class Used	---------- Purpose
+Create a file ----------	File, FileWriter ----------	Make a new file
+Write to file ----------	FileWriter, BufferedWriter ----------	Save data to a file
+Read from file ----------	FileReader, BufferedReader, Scanner ----------	Retrieve data from a file
+Delete a file  ----------	File -----	Remove a file
+Check file info	File -----	Get name, path, size, etc.

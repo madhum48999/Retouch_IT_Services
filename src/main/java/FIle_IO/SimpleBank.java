@@ -3,69 +3,43 @@ package FIle_IO;
 import java.io.*;
 import java.util.*;
 
-class BankAccount {
-    private String accNo;
-    private String name;
-    private double balance;
-
-    public BankAccount(String accNo, String name, double balance) {
-        this.accNo = accNo;
-        this.name = name;
-        this.balance = balance;
-    }
-
-    public String getAccNo() {
-        return accNo;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
-    // Convert account details to text for saving in file
-    public String toFileString() {
-        return accNo + "," + name + "," + balance;
-    }
-
-    // Convert text back into BankAccount object
-    public static BankAccount fromFileString(String line) {
-        String[] parts = line.split(",");
-        return new BankAccount(parts[0], parts[1], Double.parseDouble(parts[2]));
-    }
-}
-
 public class SimpleBank {
     private static final String FILE_NAME = "accounts.txt";
 
-    // ✅ Add a new account (write/append to file)
+    // Add a new account (write/append to file)
     public static void addAccount(BankAccount acc) {
-        try (FileWriter fw = new FileWriter(FILE_NAME, true)) {
-            fw.write(acc.toFileString() + "\n");
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
+            bw.write(acc.toFileString());
+            bw.newLine();
             System.out.println("Account created successfully!");
         } catch (IOException e) {
-            System.out.println("Error writing file: " + e.getMessage());
+            System.out.println("Error writing to file: " + e.getMessage());
         }
     }
 
-    // ✅ View all accounts (read from file)
+    // View all accounts (read from file)
     public static void viewAccounts() {
-        try (BufferedReader br = new BufferedReader(new FileReader(FILE_NAME))) {
+        File file = new File(FILE_NAME);
+        if (!file.exists()) {
+            System.out.println("No accounts found (file missing).");
+            return;
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             System.out.println("\n--- All Accounts ---");
             while ((line = br.readLine()) != null) {
-                BankAccount acc = BankAccount.fromFileString(line);
-                System.out.println("AccNo: " + acc.getAccNo() +
-                        ", Name: " + acc.getName() +
-                        ", Balance: " + acc.getBalance());
+                try {
+                    BankAccount acc = BankAccount.fromFileString(line);
+                    System.out.println("AccNo: " + acc.getAccNo() +
+                            ", Name: " + acc.getName() +
+                            ", Balance: ₹" + acc.getBalance());
+                } catch (Exception e) {
+                    System.out.println("⚠️ Skipping invalid line: " + line);
+                }
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("No accounts found (file missing).");
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            System.out.println("❌ Error reading file: " + e.getMessage());
         }
     }
 
@@ -79,17 +53,31 @@ public class SimpleBank {
             System.out.println("2. View Accounts");
             System.out.println("3. Exit");
             System.out.print("Enter choice: ");
+
+            while (!sc.hasNextInt()) {
+                System.out.println("Please enter a valid number.");
+                sc.next(); // discard invalid input
+            }
+
             choice = sc.nextInt();
             sc.nextLine(); // consume newline
 
             switch (choice) {
                 case 1:
                     System.out.print("Enter Account Number: ");
-                    String accNo = sc.nextLine();
+                    String accNo = sc.nextLine().trim();
                     System.out.print("Enter Name: ");
-                    String name = sc.nextLine();
+                    String name = sc.nextLine().trim();
                     System.out.print("Enter Balance: ");
+
+                    while (!sc.hasNextDouble()) {
+                        System.out.println("Please enter a valid balance.");
+                        sc.next(); // discard invalid input
+                    }
+
                     double balance = sc.nextDouble();
+                    sc.nextLine(); // consume newline
+
                     BankAccount acc = new BankAccount(accNo, name, balance);
                     addAccount(acc);
                     break;
@@ -99,7 +87,7 @@ public class SimpleBank {
                     break;
 
                 case 3:
-                    System.out.println("Exiting...");
+                    System.out.println("Exiting... Have a great day!");
                     break;
 
                 default:
